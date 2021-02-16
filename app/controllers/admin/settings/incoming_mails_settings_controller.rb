@@ -28,21 +28,18 @@
 # See docs/COPYRIGHT.rdoc for more details.
 #++
 
-class WorkPackages::SettingsController < ::ApplicationController
-  include AdminSettingsUpdater
-  current_menu_item :index do
-    :work_packages_setting
-  end
+module Admin::Settings
+  class IncomingMailsSettingsController < ::Admin::SettingsController
+    current_menu_item [:show] do
+      :incoming_mails
+    end
 
-  def show
-    render template: 'work_packages/settings/work_package_tracking'
-  end
+    def default_breadcrumb
+      t(:label_incoming_emails)
+    end
 
-  def default_breadcrumb
-    t(:label_work_package_tracking)
-  end
-
-  def show_local_breadcrumb
-    true
+    def show_local_breadcrumb
+      true
+    end
   end
 end

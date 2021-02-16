@@ -28,19 +28,20 @@
 # See docs/COPYRIGHT.rdoc for more details.
 #++
 
-class UsersSettingsController < ::ApplicationController
-  layout 'admin'
-  menu_item :user_settings
+module Admin::Settings
+  class AuthenticationSettingsController < ::Admin::SettingsController
+    menu_item :authentication_settings
 
-  def show
-    render template: 'users/users_settings'
-  end
+    def show
+      render template: 'authentication/authentication_settings'
+    end
 
-  def default_breadcrumb
-    t(:label_user_settings)
-  end
+    def default_breadcrumb
+      t(:label_authentication)
+    end
 
-  def show_local_breadcrumb
-    true
+    def show_local_breadcrumb
+      true
+    end
   end
 end

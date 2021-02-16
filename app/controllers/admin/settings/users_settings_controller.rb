@@ -28,16 +28,20 @@
 # See docs/COPYRIGHT.rdoc for more details.
 #++
 
-class Settings::ProjectsController < SettingsController
-  include AdminSettingsUpdater
+module Admin::Settings
+  class UsersSettingsController < ::Admin::SettingsController
+    menu_item :user_settings
 
-  menu_item :settings_projects
+    def show
+      render template: 'users/users_settings'
+    end
 
-  def show
-    render template: 'settings/_projects'
-  end
+    def default_breadcrumb
+      t(:label_user_settings)
+    end
 
-  def default_breadcrumb
-    t(:label_project_plural)
+    def show_local_breadcrumb
+      true
+    end
   end
 end

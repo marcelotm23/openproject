@@ -28,19 +28,19 @@
 # See docs/COPYRIGHT.rdoc for more details.
 #++
 
-class Settings::DisplayController < SettingsController
-  include AdminSettingsUpdater
+module Admin::Settings
+  class DisplaySettingsController < ::Admin::SettingsController
+    menu_item :settings_display
 
-  menu_item :settings_display
+    def show
+      @options = {}
+      @options[:user_format] = User::USER_FORMATS_STRUCTURE.keys.map { |f| [User.current.name(f), f.to_s] }
 
-  def show
-    @options = {}
-    @options[:user_format] = User::USER_FORMATS_STRUCTURE.keys.map { |f| [User.current.name(f), f.to_s] }
+      render template: 'settings/_display'
+    end
 
-    render template: 'settings/_display'
-  end
-
-  def default_breadcrumb
-    t(:label_display)
+    def default_breadcrumb
+      t(:label_display)
+    end
   end
 end

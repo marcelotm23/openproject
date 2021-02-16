@@ -28,18 +28,17 @@
 # See docs/COPYRIGHT.rdoc for more details.
 #++
 
-class Admin::IncomingMailsController < ApplicationController
-  include AdminSettingsUpdater
+module Admin::Settings
+  class RepositoriesSettingsController < ::Admin::SettingsController
+    menu_item :settings_repositories
 
-  current_menu_item [:show] do
-    :incoming_mails
-  end
+    def show
+      render template: 'settings/_repositories'
+    end
 
-  def default_breadcrumb
-    t(:label_incoming_emails)
-  end
-
-  def show_local_breadcrumb
-    true
+    def default_breadcrumb
+      t(:label_repository_plural)
+    end
   end
 end
+
